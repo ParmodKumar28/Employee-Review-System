@@ -1,0 +1,17 @@
+/* Style code all external styles other than bootstrap */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+/* Body background color */
+body{
+    background: #007bff;
+    background: linear-gradient(to right, #0062e6, #33aeff);
+}

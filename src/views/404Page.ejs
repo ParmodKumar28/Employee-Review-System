@@ -1,0 +1,31 @@
+<style>
+  .bg-color {
+    background-color: #181642;
+    height: 100vh;
+  }
+
+  h1 {
+    font-size: 6rem !important;
+  }
+
+  p {
+    font-size: 2.6rem !important;
+  }
+</style>
+<!--  -->
+
+<div class="container-fluid bg-color">
+  <div class="container text-center">
+    <h1 class="display-4 text-light">
+      OOPS!
+      <img
+        src="https://cdn.jsdelivr.net/gh/ahmedhosna95/upload@1731955f/sad404.svg"
+        alt="Image"
+      />
+    </h1>
+    <% if(errorMessage) { %>
+
+    <p class="lead text-danger"><%= errorMessage %></p>
+    <% } %>
+  </div>
+</div>

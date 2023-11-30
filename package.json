@@ -1,0 +1,36 @@
+{
+  "name": "employee-review-system",
+  "version": "1.0.0",
+  "description": "A project which allows employee to review each other's performance.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParmodKumar28/Employee-Review-System.git"
+  },
+  "keywords": [
+    "Employee",
+    "Review"
+  ],
+  "author": "Parmod Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ParmodKumar28/Employee-Review-System/issues"
+  },
+  "homepage": "https://github.com/ParmodKumar28/Employee-Review-System#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2",
+    "session": "^0.1.0"
+  }
+}
