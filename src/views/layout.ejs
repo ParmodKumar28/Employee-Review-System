@@ -43,14 +43,14 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse text-secondary-emphasis" id="navbarSupportedContent">
           <!-- Display for employees -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/api/employee/">Submit Feedback</a>
+                <a class="nav-link" href="/api/feedback/assigned">Submit Feedback</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="/api/employee/">Reviews</a>
+              <a class="nav-link" href="/api/feedback/received">Feedbacks</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -73,7 +73,7 @@
             <!-- ... (Other employee-related links) ... -->
           </ul>
           <% } else if(employee.role == 'Admin'){ %>
-            <a class="navbar-brand" href="/api/admin/">Employee Review System</a>
+            <a class="navbar-brand text-secondary-emphasis" href="/api/admin/">Employee Review System</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -89,11 +89,45 @@
           <!-- Display for admins -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Assign Task</a>
+              <a class="nav-link" href="/api/admin/assign">Assign Task</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reviews</a>
+              <a class="nav-link" href="/api/admin/employees">Employees</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">Add Employee</a>
+            </li>
+            <!--  -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Feedbacks
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/api/feedback/received"
+                    >Admin Feedbacks</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/api/feedback/assigned"
+                    >Submit Feedback</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/api/feedback/employees-feedback"
+                    >Employees Feedbacks</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <!--  -->
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -115,7 +149,7 @@
             <!-- ... (Other admin-related links) ... -->
           </ul>
           <% } %> <% } else { %>
-            <a class="navbar-brand fw-medium" href="/api/employee/register">Employee Review System</a>
+            <a class="navbar-brand fw-medium text-secondary-emphasis" href="/api/employee/register">Employee Review System</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -138,23 +172,48 @@
             <!-- ... (Other links for non-logged-in users) ... -->
           </ul>
           <% } %>
-
-          <!-- Search form -->
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
     <!-- Navbar Ends Here -->
+
+    <!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light" id="addEmployeeModalLabel">Add New Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/api/admin/add-employee" method="post">
+          <div class="mb-3">
+            <label for="employeeName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="employeeName" name="name" required placeholder="Enter employee name">
+          </div>
+          <div class="mb-3">
+            <label for="employeeEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="employeeEmail" name="email" required placeholder="Enter employee email">
+          </div>
+          <div class="mb-3">
+            <label for="employeePassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="employeePassword" name="password" required placeholder="Enter employee password">
+          </div>
+          <div class="mb-3">
+            <label for="employeeRole" class="form-label">Role</label>
+            <select class="form-select" id="employeeRole" name="role" required>
+              <option value="Admin">Admin</option>
+              <option value="Employee">Employee</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Employee</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- New Employee Modal Ends Here -->
+
     <!-- Placeholder For Body To Render Files Here -->
     <%-body%>
     <!-- Placeholder Ends -->

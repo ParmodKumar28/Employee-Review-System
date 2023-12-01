@@ -1,0 +1,116 @@
+<div class="container">
+  <!-- Heading -->
+  <div class="row">
+    <h1 class="bg-dark text-light mt-4 p-2">All Employees</h1>
+        <!-- Notifications -->
+        <% if (notification) { %>
+            <div
+              id="notification"
+              class="alert alert-primary alert-dismissible fade show m-2"
+              role="alert"
+            >
+              <%= notification %>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+        
+            <script>
+              // Auto dismiss the alert after 5 seconds
+              setTimeout(function () {
+                const alert = document.getElementById("notification");
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+              }, 5000);
+            </script>
+            <% } %>
+            <!--  -->
+        </div>
+  <!--  -->
+
+  <!-- All Employees -->
+  <div class="row mt-4 mb-4 justify-content-center">
+    <% if (employees.length > 0) { %> <% employees.forEach(function (employee) {
+    %>
+    <!-- Employee Details Card -->
+    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+      <div class="card border-primary mb-3 shadow" style="max-width: 20rem; min-width:21rem; ">
+        <div class="card-header bg-primary text-white">
+          <h4 class="card-title">
+            <i class="fa-solid fa-user"></i> <%= employee.name %>
+          </h4>
+          <p class="card-text text-white-50">
+            <strong><i class="fa-solid fa-envelope"></i></i> Email:</strong>
+            <%= employee.email %>
+          </p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong><i class="fa-solid fa-calendar-day me-2 fa-lg"></i></i>Registered On:</strong> <%=
+            employee.createdAt.toLocaleDateString() %>
+          </p>
+          <p class="card-text"><strong><i class="fa-solid fa-user-tie me-2 fa-lg"></i>Role:</strong> <%= employee.role %></p>
+          <p class="card-text">
+            <strong><i class="fa-regular fa-comment me-2"></i>Feedback Given:</strong> <%= employee.reviews.given.length
+            %>
+          </p>
+          <p class="card-text">
+            <strong><i class="fa-regular fa-comment me-2"></i>Feedback Received:</strong> <%=
+            employee.reviews.received.length %>
+          </p>
+        </div>
+        <div class="card-footer">
+            <a href="/api/employee/<%= employee._id %>/delete"><i class="fa-solid fa-trash-can text-danger fa-lg me-2 ms-2"></i></a>
+            <a data-bs-toggle="modal" data-bs-target="#updateEmployeeModal<%= employee._id %>"><i class="fa-solid fa-file-pen fa-lg me-2 ms-2 text-primary"></i></a>
+        </div>
+      </div>
+    </div>
+
+        <!-- Employee Update Modal -->
+<div class="modal fade" id="updateEmployeeModal<%= employee._id %>" tabindex="-1" aria-labelledby="updateEmployeeModalLabel<%= employee._id %>" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-light" id="updateEmployeeModalLabel">Update Employee Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/api/employee/<%= employee._id %>/update" method="post">
+            <div class="mb-3">
+              <label for="employeeName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="employeeName" name="name" required placeholder="Enter employee name" value="<%= employee.name %>">
+            </div>
+            <div class="mb-3">
+              <label for="employeeEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="employeeEmail" name="email" required placeholder="Enter employee email" value="<%= employee.email %>">
+            </div>
+            <div class="mb-3">
+              <label for="employeePassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="employeePassword" name="password" required placeholder="Enter employee password" value="<%= employee.password %>">
+            </div>
+            <div class="mb-3">
+              <label for="employeeRole" class="form-label">Role</label>
+              <select class="form-select" id="employeeRole" name="role" required>
+                <option selected disabled><%= employee.role %></option>
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Employee</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Employee Update Modal Ends Here -->
+
+    <!-- Employee Details Card Ends Here -->
+    <% }) %> <% } else { %>
+    <h1 class="mt-2">No employees. Please add some employees.</h1>
+    <% } %>
+  </div>
+  <!--  -->
+</div>

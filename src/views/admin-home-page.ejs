@@ -1,6 +1,33 @@
-<!-- Page where admin is rendered when he or she logins where they can do stuffs. -->
 <div class="container">
   <div class="row">
-    <h1>Welcome Admin</h1>
+    <h1 style="color: #343a40">Welcome Admin <%= employee.name %></h1>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-3"
+      style="
+        background-color: #17a2b8;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+      "
+    >
+      <p>Total Employees: <%= totalEmployees %></p>
+      <p>Pending Feedbacks: <%= pendingFeedbacks %></p>
+      <p>Successful Feedbacks: <%= successfulFeedbacks %></p>
+    </div>
+    <div
+      class="col-md-3"
+      style="
+        background-color: #17a2b8;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-left: 10px;
+      "
+    >
+      <p>Feedbacks Given: <%= feedbacksGiven %></p>
+      <p>Feedbacks Received: <%= feedbacksReceived %></p>
+    </div>
   </div>
 </div>

@@ -1,8 +1,25 @@
 // Employee controller is here all views and repository communication is here.
 // Imports
-import { register, findEmployeeByEmailId } from "../model/employee.repository.js";
+import { register, findEmployeeByEmailId, deleteEmployeeById, updateEmployeeById } from "../model/employee.repository.js";
 import bcrypt from "bcrypt";
+import EmployeeModel from "../model/employee.schema.js";
+import { employeeAssignedFeedbacks, feedbacksReceived, submittedFeedbacks } from "../model/feedback.repository.js";
 
+// Function to get employee home page.
+export const getEmployeeHomePage = async(req,res,next)=>{
+    try {
+        const feedbacksSubmitted = await submittedFeedbacks(req.session.employee._id);
+        const receivedFeedbacks = await feedbacksReceived(req.session.employee._id);
+        const feedbacksAssigned = await employeeAssignedFeedbacks(req.session.employee._id);
+        res.render('employee-home-page', {employee: req.session.employee,
+            feedbacksReceived: receivedFeedbacks.length,
+            assignedFeedbacks: feedbacksAssigned.length,
+            feedbacksGiven: feedbacksSubmitted.length
+            });
+    } catch (error) {
+        next(error);
+    }
+}
 
 // Function to get home page or to signin or signup.
 export const getSignInForm = async(req,res,next)=>{
@@ -48,18 +65,48 @@ export const signIn = async (req,res,next)=>{
         }
         // Adding employee in cookies for verfication of login process.
         req.session.employee = employee;
-        return res.render('employee-home-page', {employee: employee});
+        if(employee.role == 'Admin')
+        {
+            return res.redirect('/api/admin/');
+        }
+        res.redirect('/api/employee/')  ;      
     } catch (error) {
         return next(error);
     }
 }
 
-// Function to load employee home page.
-export const getHomePage = async(req,res,next)=>{
+// Function to delete an employee by id.
+export const deleteEmployee = async(req,res,next)=>{
     try {
-        return res.render('employee-home-page', {employee: req.session.employee});
+        const employeeId = req.params.employeeId;
+        const isDeleted = await deleteEmployeeById(employeeId);
+        let notification;
+        if(isDeleted)
+        {
+            notification = "Employee deleted successfuly."
+        }
+        const employees = await EmployeeModel.find({}).populate('reviews');
+        res.render('all-employees', {employees: employees, employee: req.session.employee, notification: notification});
     } catch (error) {
-        return next(error);
+        next(error);
+    }
+}
+
+// Function to update and employee by id.
+export const updateEmployee = async(req,res,next)=>{
+    try {
+        const employeeId = req.params.employeeId;
+        const data = req.body;
+        const isUpdated = await updateEmployeeById(employeeId, data);
+        let notification;
+        if(isUpdated)
+        {
+            notification = "Employee updated successfuly."
+        }
+        const employees = await EmployeeModel.find({}).populate('reviews');
+        res.render('all-employees', {employees: employees, employee: req.session.employee, notification: notification});
+    } catch (error) {
+       next(error); 
     }
 }
 

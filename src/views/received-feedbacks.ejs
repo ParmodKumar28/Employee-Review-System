@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row mt-4 d-flex justify-content-between">
+    <!-- Section for received feedbacks -->
+    <div class="col-md-5">
+      <!-- Heading for received feedbacks -->
+      <div class="">
+        <h1 class="bg-dark text-white mt-2 p-2">Received Feedbacks</h1>
+      </div>
+      <% if (receivedFeedbacks.length > 0) { %> <%
+      receivedFeedbacks.forEach(function(feedback) { %>
+      <div class="card border-info shadow mb-4">
+        <!-- Card content for received feedbacks -->
+        <div class="card-header bg-primary text-white">
+          <i class="fa-solid fa-user-tie me-2 fa-lg"></i> Sender : <%=
+          feedback.sender.name %>
+          <i class="fa-solid fa-arrow-right me-2 fa-lg"></i> To Me
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa-solid fa-comment-dots me-2 text-info"></i> Feedback
+          </h5>
+          <p class="card-text"><%= feedback.feedback %></p>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <!-- If no received feedbacks -->
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center">No Received Feedbacks</h5>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <!-- Section for given feedbacks -->
+    <div class="col-md-5">
+      <!-- Heading for given feedbacks -->
+      <div class="">
+        <h1 class="bg-dark text-white mt-2 p-2">Given Feedbacks</h1>
+      </div>
+      <% if (givenFeedbacks.length > 0) { %> <%
+      givenFeedbacks.forEach(function(feedback) { %>
+      <div class="card border-info shadow mb-4">
+        <!-- Card content for given feedbacks -->
+        <div class="card-header bg-success text-white">
+          <i class="fa-solid fa-user-tie me-2 fa-lg"></i> To : <%=
+          feedback.receiver.name %>
+          <i class="fa-solid fa-arrow-right me-2 fa-lg"></i> By Me
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa-solid fa-comment-dots me-2 text-info"></i> Feedback
+          </h5>
+          <p class="card-text"><%= feedback.feedback %></p>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <!-- If no given feedbacks -->
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center">No Given Feedbacks</h5>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>

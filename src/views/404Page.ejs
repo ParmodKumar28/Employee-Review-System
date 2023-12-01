@@ -1,6 +1,6 @@
 <style>
   .bg-color {
-    background-color: #181642;
+    /* background-color: #181642; */
     height: 100vh;
   }
 
@@ -11,12 +11,21 @@
   p {
     font-size: 2.6rem !important;
   }
+
+  body {
+    background: #007bff;
+    background: linear-gradient(
+      to right,
+      hsl(214, 100%, 45%),
+      hsl(204, 100%, 60%)
+    );
+  }
 </style>
 <!--  -->
 
 <div class="container-fluid bg-color">
   <div class="container text-center">
-    <h1 class="display-4 text-light">
+    <h1 class="display-4 text-light fw-bold">
       OOPS!
       <img
         src="https://cdn.jsdelivr.net/gh/ahmedhosna95/upload@1731955f/sad404.svg"
@@ -25,7 +34,7 @@
     </h1>
     <% if(errorMessage) { %>
 
-    <p class="lead text-danger"><%= errorMessage %></p>
+    <p class="lead text-light"><%= errorMessage %></p>
     <% } %>
   </div>
 </div>

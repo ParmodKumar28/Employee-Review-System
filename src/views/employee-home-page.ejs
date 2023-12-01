@@ -1,6 +1,20 @@
-<!-- Page where employee is rendered when he or she logins where they can submit reviews. -->
 <div class="container">
   <div class="row">
-    <h1>Welcome Employee</h1>
+    <h1 style="color: #343a40">Welcome <%= employee.name %></h1>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-3"
+      style="
+        background-color: #17a2b8;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+      "
+    >
+      <p>Feedbacks Received: <%= feedbacksReceived %></p>
+      <p>Feedbacks Given: <%= feedbacksGiven %></p>
+      <p>Assigned Feedbacks: <%= assignedFeedbacks %></p>
+    </div>
   </div>
 </div>

@@ -1,0 +1,72 @@
+<!-- Here all pending and successful feedbacks shown to the admin page -->
+<div class="container">
+  <div class="row mt-4 d-flex justify-content-between">
+    <!-- Section for successful feedbacks -->
+    <div class="col-md-5">
+      <!-- Heading for successful feedbacks -->
+      <div class="">
+        <h1 class="bg-dark text-white mt-2 p-2">Successful Feedbacks</h1>
+      </div>
+      <% if (successfulFeedbacks.length > 0) { %> <%
+      successfulFeedbacks.forEach(function(feedback) { %>
+      <div class="card border-info shadow mb-4">
+        <!-- Card content for successful feedbacks -->
+        <div class="card-header bg-primary text-white">
+          <i class="fa-solid fa-user-tie me-2 fa-lg"></i> Sender: <%=
+          feedback.sender.name %>
+          <i class="fa-solid fa-arrow-right me-2 fa-lg"></i> Receiver: <%=
+          feedback.receiver.name %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa-solid fa-info-circle me-2 text-success"></i> Status:
+            Successful
+          </h5>
+          <p class="card-text">Feedback: <%= feedback.feedback %></p>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <!-- If no successful feedbacks -->
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center">No Feedbacks</h5>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <!-- Section for pending feedbacks -->
+    <div class="col-md-5">
+      <!-- Heading for pending feedbacks -->
+      <div class="">
+        <h1 class="bg-dark text-white mt-2 p-2">Pending Feedbacks</h1>
+      </div>
+      <% if (pendingFeedbacks.length > 0) { %> <%
+      pendingFeedbacks.forEach(function(feedback) { %>
+      <div class="card border-info shadow mb-4">
+        <!-- Card content for pending feedbacks -->
+        <div class="card-header bg-warning text-white">
+          <i class="fa-solid fa-user-tie me-2 fa-lg"></i> Sender: <%=
+          feedback.sender.name %>
+          <i class="fa-solid fa-arrow-right me-2 fa-lg"></i> Receiver: <%=
+          feedback.receiver.name %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa-solid fa-info-circle me-2 text-warning"></i> Status:
+            Pending
+          </h5>
+          <p class="card-text">Status: <%= feedback.status %></p>
+        </div>
+      </div>
+      <% }) %> <% } else { %>
+      <!-- If no pending feedbacks -->
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center">No Pending Feedbacks</h5>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>

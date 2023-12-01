@@ -1,0 +1,77 @@
+<!-- This file contains page for showing employee assigned feedbacks -->
+<div class="container">
+  <!-- Heading -->
+  <div class="row">
+    <h1 class="text-white bg-dark p-2 mt-4">Assigned Feedbacks</h1>
+    <!-- Notifications -->
+    <% if (notification) { %>
+    <div
+      id="notification"
+      class="alert alert-primary alert-dismissible fade show m-2"
+      role="alert"
+    >
+      <%= notification %>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <script>
+      // Auto dismiss the alert after 5 seconds
+      setTimeout(function () {
+        const alert = document.getElementById("notification");
+        const bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      }, 5000);
+    </script>
+    <% } %>
+    <!--  -->
+  </div>
+  <!-- Headings Ends -->
+
+  <!-- Assigned Feedbacks -->
+  <div class="row mt-2">
+    <!-- Loop through feedbacks and dynamically showing assigned feedbacks -->
+    <% if(assignedFeedbacks.length > 0){ %> <%
+    assignedFeedbacks.forEach(function(feedback){ %>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fa-solid fa-user-tie me-2 text-primary fa-lg"></i
+            >Receiver: <%= feedback.receiver.name %>
+          </h5>
+          <!-- Add more details if available -->
+
+          <!-- Form to submit assigned feedback for other employees -->
+          <form action="/api/feedback/<%= feedback._id %>/submit" method="post">
+            <div class="mb-3">
+              <label for="feedback" class="form-label text-secondary"
+                >Your Feedback</label
+              >
+              <textarea
+                class="form-control bg-light"
+                id="feedback"
+                name="feedback"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %> <% } else { %>
+    <h1 class="mt-2 p-2">No Feedbacks Assigned To You</h1>
+    <% } %>
+    <!--  -->
+  </div>
+
+  <!-- Assigned Feedbacks Ends Here -->
+</div>

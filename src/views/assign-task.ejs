@@ -1,0 +1,86 @@
+<!-- Page where admin can assign feedback to employees -->
+<div class="container">
+  <div class="row">
+    <!-- Notifications -->
+    <% if (notification) { %>
+    <div
+      id="notification"
+      class="alert alert-success alert-dismissible fade show m-2"
+      role="alert"
+    >
+      <%= notification %>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <script>
+      // Auto dismiss the alert after 5 seconds
+      setTimeout(function () {
+        const alert = document.getElementById("notification");
+        const bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      }, 5000);
+    </script>
+    <% } %>
+    <!--  -->
+    <!-- Heading -->
+    <h1 class="jumbotron mt-4 p-2 text-light bg-dark">
+      Assign Feedback Review To Employees Fill Form
+    </h1>
+    <!--  -->
+  </div>
+  <div class="row justify-content-center mt-3">
+    <!-- Assign Card -->
+    <div class="col-md-9">
+      <div class="card mt-2 shadow">
+        <div class="card-header bg-primary">
+          <p class="text-white fs-3">Assign Feedback</p>
+        </div>
+        <div class="card-body">
+          <!-- Assign form -->
+          <form action="/api/admin/assign" method="post">
+            <div class="mb-3">
+              <label for="feedbackGiver" class="form-label"
+                >Select Employee Giving Feedback</label
+              >
+              <select id="feedbackGiver" class="form-select" name="sender">
+                <option selected disabled>Select Giver</option>
+                <!-- Populate this dropdown dynamically with employee names -->
+                <% employees.forEach(function(employee){ %>
+
+                <option value="<%= employee._id %>">
+                  <%= employee.name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+            <!--  -->
+            <div class="mb-3">
+              <label for="feedbackReceiver" class="form-label"
+                >Select Employee Receiving Feedback</label
+              >
+              <select id="feedbackReceiver" class="form-select" name="receiver">
+                <option selected disabled>Select Receiver</option>
+                <!-- Populate this dropdown dynamically with employee names -->
+                <% employees.forEach(function(employee){ %>
+
+                <option value="<%= employee._id %>">
+                  <%= employee.name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Assign</button>
+          </form>
+        </div>
+        <!-- Form Ends Here -->
+        <div class="card-footer text-body-secondary">Thankyou</div>
+      </div>
+    </div>
+    <!-- Card Ends -->
+  </div>
+</div>

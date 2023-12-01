@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 const feedbacksSchema = new mongoose.Schema({
     feedback: {
         type: String,
-        required: true
     },
     sender: {
         type: mongoose.Schema.ObjectId,

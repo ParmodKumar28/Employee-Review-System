@@ -15,6 +15,7 @@ import connectUsingMongoose from './config/mongooseConfig.js';
 // Routers imports
 import employeeRouter from './src/features/routes/employee.routes.js';
 import adminRouter from './src/features/routes/admin.routes.js';
+import feedbackRouter from './src/features/routes/feedback.routes.js';
 
 // Creating server
 const app = express();
@@ -50,14 +51,20 @@ app.get('/', (req,res,next)=>{
 // Routes
 app.use('/api/employee', employeeRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/feedback', feedbackRouter);
 
 // Error handler
 app.use((err,req,res,next)=>{
     console.log(err);
+    if (err.name === 'MongoServerError' && err.code === 11000) {
+        // Duplicate key error
+        return res.status(400).render('404Page', { errorMessage: 'Email already exists.' });
+    }
     if(err instanceof mongoose.Error.ValidationError)
     {
-        return res.render('404Page', {errorMessage: err});
+        return res.render('404Page', {errorMessage: err.message});
     }
+    
     return res.render('404Page', {errorMessage: "Something went wrong on server side."});
 });
 

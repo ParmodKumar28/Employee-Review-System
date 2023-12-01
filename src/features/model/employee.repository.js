@@ -12,3 +12,16 @@ export const register = async(data)=>{
 export const findEmployeeByEmailId = async(email)=>{
     return await EmployeeModel.findOne({email: email});
 }
+
+// Function to delete an employee by id.
+export const deleteEmployeeById = async(employeeId)=>{
+    return await EmployeeModel.findByIdAndDelete(employeeId);
+}
+
+// Function to update an employee details by id.
+export const updateEmployeeById = async(employeeId, data)=>{
+    return await EmployeeModel.findByIdAndUpdate(employeeId, data, {
+        new: true,
+        runValidators: true
+    })
+}
