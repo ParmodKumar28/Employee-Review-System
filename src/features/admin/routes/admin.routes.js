@@ -1,6 +1,6 @@
 // Imports
 import express from 'express';
-import auth from '../../middlewares/auth.js';
+import auth from '../../../middlewares/auth.js';
 import { getAdminHomePage, getAllEmployees, getAssignPage, postAddNewEmployee, postAssignFeedback } from '../controller/admin.controller.js';
 
 // Creating router

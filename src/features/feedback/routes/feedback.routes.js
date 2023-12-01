@@ -1,6 +1,6 @@
 // Imports
 import express from 'express';
-import auth from '../../middlewares/auth.js';
+import auth from '../../../middlewares/auth.js';
 import { getAllEmployeesFeedback, getAssignedFeedbacks, getFeedbackReceived, postSubmitFeedback } from '../controller/feedback.controller.js';
 
 // Creating router

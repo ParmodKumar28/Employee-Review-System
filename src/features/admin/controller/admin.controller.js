@@ -2,10 +2,10 @@
 // Imports
 
 import { assignFeedback } from "../model/admin.repository.js";
-import { register } from "../model/employee.repository.js";
-import EmployeeModel from "../model/employee.schema.js";
-import { feedbacksReceived, getpendingFeedbacks, getsuccessfulFeedbacks, submittedFeedbacks } from "../model/feedback.repository.js";
-import FeedbackModel from "../model/feedback.schema.js";
+import { register } from "../../employee/model/employee.repository.js";
+import EmployeeModel from "../../employee/model/employee.schema.js";
+import { feedbacksReceived, getpendingFeedbacks, getsuccessfulFeedbacks, submittedFeedbacks } from "../../feedback/model/feedback.repository.js";
+import FeedbackModel from "../../feedback/model/feedback.schema.js";
 
 // Function to get admin home page.
 export const getAdminHomePage = async(req,res,next)=>{

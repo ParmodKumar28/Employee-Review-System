@@ -3,7 +3,7 @@
 import { register, findEmployeeByEmailId, deleteEmployeeById, updateEmployeeById } from "../model/employee.repository.js";
 import bcrypt from "bcrypt";
 import EmployeeModel from "../model/employee.schema.js";
-import { employeeAssignedFeedbacks, feedbacksReceived, submittedFeedbacks } from "../model/feedback.repository.js";
+import { employeeAssignedFeedbacks, feedbacksReceived, submittedFeedbacks } from "../../feedback/model/feedback.repository.js";
 
 // Function to get employee home page.
 export const getEmployeeHomePage = async(req,res,next)=>{

@@ -3,7 +3,7 @@
 
 import { ObjectId } from "mongodb"
 import FeedbackModel from "./feedback.schema.js"
-import EmployeeModel from "./employee.schema.js";
+import EmployeeModel from "../../employee/model/employee.schema.js";
 
 // Function to submit a feedback by a employee.
 export const submitFeedback = async(feedbackId, feedbackData)=>{

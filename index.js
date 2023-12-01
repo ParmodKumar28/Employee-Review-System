@@ -13,9 +13,9 @@ import connectUsingMongoose from './config/mongooseConfig.js';
 
 
 // Routers imports
-import employeeRouter from './src/features/routes/employee.routes.js';
-import adminRouter from './src/features/routes/admin.routes.js';
-import feedbackRouter from './src/features/routes/feedback.routes.js';
+import employeeRouter from './src/features/employee/routes/employee.routes.js';
+import adminRouter from './src/features/admin/routes/admin.routes.js';
+import feedbackRouter from './src/features/feedback/routes/feedback.routes.js';
 
 // Creating server
 const app = express();
