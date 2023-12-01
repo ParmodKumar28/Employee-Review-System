@@ -1,33 +1,66 @@
-<div class="container">
+<style>
+  .card-body {
+    text-align: center;
+  }
+
+  body {
+    background: #007bff;
+    background: linear-gradient(
+      to right,
+      hsl(214, 100%, 45%, 0.6),
+      hsl(204, 100%, 60%, 0.6)
+    );
+  }
+</style>
+
+<div class="container mt-4">
   <div class="row">
-    <h1 style="color: #343a40">Welcome Admin <%= employee.name %></h1>
+    <h1 class="text-dark animate__animated animate__fadeInDown">
+      Welcome Admin <%= employee.name %>
+    </h1>
   </div>
-  <div class="row">
-    <div
-      class="col-md-3"
-      style="
-        background-color: #17a2b8;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-      "
-    >
-      <p>Total Employees: <%= totalEmployees %></p>
-      <p>Pending Feedbacks: <%= pendingFeedbacks %></p>
-      <p>Successful Feedbacks: <%= successfulFeedbacks %></p>
+  <div class="row mt-4">
+    <div class="col-md-6 col-lg-3 mb-4 animate__animated animate__fadeInLeft">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Total Employees</h5>
+          <p class="card-text display-4"><%= totalEmployees %></p>
+        </div>
+      </div>
     </div>
-    <div
-      class="col-md-3"
-      style="
-        background-color: #17a2b8;
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        margin-left: 10px;
-      "
-    >
-      <p>Feedbacks Given: <%= feedbacksGiven %></p>
-      <p>Feedbacks Received: <%= feedbacksReceived %></p>
+    <div class="col-md-6 col-lg-3 mb-4 animate__animated animate__fadeInUp">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Pending Feedbacks</h5>
+          <p class="card-text display-4"><%= pendingFeedbacks %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4 animate__animated animate__fadeInRight">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Successful Feedbacks</h5>
+          <p class="card-text display-4"><%= successfulFeedbacks %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4 animate__animated animate__fadeInLeft">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Feedbacks Given</h5>
+          <p class="card-text display-4"><%= feedbacksGiven %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12 animate__animated animate__fadeInUp">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Feedbacks Received</h5>
+          <p class="card-text display-4"><%= feedbacksReceived %></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
