@@ -22,14 +22,16 @@
     <!-- Bootstrap Link Ends Here -->
 
     <!-- Css Link -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
     <!-- Css Link Ends Here -->
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Employee Review System</a>
+        <% if (typeof employee !== 'undefined' && employee !== null) { %> <%
+        if(employee.role == 'Employee') { %>
+        <a class="navbar-brand" href="/api/employee/">Employee Review System</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -42,12 +44,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Display for employees -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
+                <a class="nav-link" href="/api/employee/">Submit Feedback</a>
+              </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="/api/employee/">Reviews</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -57,21 +60,86 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                <%= employee.name %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="/api/employee/logout"
+                    >Logout</a
+                  >
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
+            <!-- ... (Other employee-related links) ... -->
           </ul>
+          <% } else if(employee.role == 'Admin'){ %>
+            <a class="navbar-brand" href="/api/admin/">Employee Review System</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Display for admins -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Assign Task</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reviews</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <%= employee.name %>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/api/employee/logout"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <!-- ... (Other admin-related links) ... -->
+          </ul>
+          <% } %> <% } else { %>
+            <a class="navbar-brand fw-medium" href="/api/employee/register">Employee Review System</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Display for non-logged-in users -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-primary fw-medium" aria-current="page" href="/api/employee/register"
+                >Sign In</a
+              >
+            </li>
+            <!-- ... (Other links for non-logged-in users) ... -->
+          </ul>
+          <% } %>
+
+          <!-- Search form -->
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"

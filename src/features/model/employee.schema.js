@@ -1,5 +1,6 @@
 // Creating schema for the employee here.
 import mongoose from "mongoose";
+import bcrypt from 'bcrypt';
 
 const employeesSchema = new mongoose.Schema({
     name: {
@@ -45,6 +46,22 @@ const employeesSchema = new mongoose.Schema({
         ]
     }
 }, { timestamps: true });
+
+// Hashing the password of employee before saving.
+employeesSchema.pre('save', async function(next){
+    const employee = this;
+    if(!employee.isModified('password')){
+        return next();
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(employee.password, 12);
+        employee.password = hashedPassword;
+        next();
+    } catch (error) {
+        return next(error);
+    }
+});
 
 // Employee model
 const EmployeeModel = mongoose.model('Employee', employeesSchema);

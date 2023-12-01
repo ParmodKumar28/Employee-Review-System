@@ -14,6 +14,7 @@ import connectUsingMongoose from './config/mongooseConfig.js';
 
 // Routers imports
 import employeeRouter from './src/features/routes/employee.routes.js';
+import adminRouter from './src/features/routes/admin.routes.js';
 
 // Creating server
 const app = express();
@@ -43,11 +44,12 @@ app.use(express.static('public'));
 
 // Default route
 app.get('/', (req,res,next)=>{
-    res.redirect('/api/employee/');
+    res.redirect('/api/employee/register');
 });
 
 // Routes
 app.use('/api/employee', employeeRouter);
+app.use('/api/admin', adminRouter);
 
 // Error handler
 app.use((err,req,res,next)=>{
