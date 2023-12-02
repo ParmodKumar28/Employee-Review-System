@@ -45,3 +45,10 @@ export const getpendingFeedbacks = async()=>{
 export const getsuccessfulFeedbacks = async()=>{
     return await FeedbackModel.find({status: 'success'}).populate('sender').populate('receiver');
 }
+
+// Function to update feedback only admin allowed.
+export const updateFeedback = async(feedbackId, data)=>{
+    return await FeedbackModel.findByIdAndUpdate(feedbackId, data, {
+        new: true
+    });
+}

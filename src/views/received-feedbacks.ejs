@@ -1,5 +1,31 @@
 <div class="container">
   <div class="row mt-4 d-flex justify-content-between">
+    <!-- Notifications -->
+    <% if (notification) { %>
+    <div
+      id="notification"
+      class="alert alert-success alert-dismissible fade show m-2"
+      role="alert"
+    >
+      <%= notification %>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <script>
+      // Auto dismiss the alert after 5 seconds
+      setTimeout(function () {
+        const alert = document.getElementById("notification");
+        const bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      }, 5000);
+    </script>
+    <% } %>
+    <!--  -->
     <!-- Section for received feedbacks -->
     <div class="col-md-5">
       <!-- Heading for received feedbacks -->
@@ -53,6 +79,68 @@
           </h5>
           <p class="card-text"><%= feedback.feedback %></p>
         </div>
+        <!-- Update feedbacks by the admin only -->
+        <% if(employee.role == 'Admin'){ %>
+        <div class="card-footer">
+          <a data-bs-toggle="modal" data-bs-target="#updateFeedbackModal"
+            ><i class="fa-solid fa-file-pen fa-lg text-primary"></i
+          ></a>
+
+          <!-- Modal to update feedback of admin -->
+          <div class="modal" tabindex="-1" id="updateFeedbackModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><%= feedback.receiver.name %></h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <!-- Form to submit assigned feedback for other employees -->
+                  <form
+                    action="/api/feedback/<%= feedback._id %>/update"
+                    method="post"
+                  >
+                    <div class="mb-3">
+                      <label for="feedback" class="form-label text-secondary"
+                        >Your Feedback</label
+                      >
+                      <textarea
+                        class="form-control bg-light"
+                        id="feedback"
+                        name="feedback"
+                        rows="3"
+                        required
+                      >
+<%= feedback.feedback %></textarea
+                      >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Update Feedback
+                    </button>
+                  </form>
+                  <!-- Form ends here -->
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal to update feedback of admin ends here -->
+        </div>
+        <% } %>
+        <!-- Update feedbacks by the admin only ends here-->
       </div>
       <% }) %> <% } else { %>
       <!-- If no given feedbacks -->

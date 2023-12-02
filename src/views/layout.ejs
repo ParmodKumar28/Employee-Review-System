@@ -35,7 +35,7 @@
       <div class="container-fluid">
         <% if (typeof employee !== 'undefined' && employee !== null) { %> <%
         if(employee.role == 'Employee') { %>
-        <a class="navbar-brand" href="/api/employee/">Employee Review System</a>
+        <a class="navbar-brand text-primary fw-medium" href="/api/employee/"><img src="/Assets/logo.png" alt="Logo" height="35px"> ERS</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -77,7 +77,7 @@
             <!-- ... (Other employee-related links) ... -->
           </ul>
           <% } else if(employee.role == 'Admin'){ %>
-            <a class="navbar-brand text-secondary-emphasis" href="/api/admin/">Employee Review System</a>
+            <a class="navbar-brand text-primary fw-medium" href="/api/admin/"><img src="/Assets/logo.png" alt="Logo" height="35px"> ERS</a>
             <button
               class="navbar-toggler"
               type="button"
@@ -153,7 +153,7 @@
             <!-- ... (Other admin-related links) ... -->
           </ul>
           <% } %> <% } else { %>
-            <a class="navbar-brand fw-medium text-secondary-emphasis" href="/api/employee/register">Employee Review System</a>
+            <a class="navbar-brand fw-medium text-secondary-emphasis" href="/api/employee/register"> <img src="/Assets/logo.png" alt="Logo" height="35px"> ERS</a>
             <button
               class="navbar-toggler"
               type="button"
