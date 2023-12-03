@@ -97,3 +97,7 @@ adminRouter.get('/employees', auth, getAllEmployees);
 
 Thankyou, I tried to make this project ui cool enough and attractive and easy to use and i used Html, Css, Javascript and Bootstrap for that and i hope you will like this.
 Follow on github for more.
+
+Github Repository: - https://github.com/ParmodKumar28/Employee-Review-System
+Hosted Url:-  https://employee-review-system-r8tw.onrender.com/api/employee/register
+Video Link: - https://youtu.be/mvHhUozvC0w
