@@ -42,14 +42,14 @@ The Employee Review System is designed to streamline the process of employee fee
 Install dependenciefa-spin
 - npm install
 
-#Usage
+## Usage
 
 1. Start the application
 - npm Start
 
 2. Access the application in a web browser: `http://localhost:<Port-Number>`
 
-#Technologies Used
+## Technologies Used
 
 - Node.js
 - Express
@@ -62,42 +62,42 @@ Install dependenciefa-spin
 - express-ejs-layouts 
 - cookie-parser 
 
-#Folder Structure 
+## Folder Structure 
 `/src`: Contains all project source files 
 `/public`: Public assets like Css folder for style code and assets folder for logo
 `/views`: EJS view templates 
 `/config`: Configration files like database connections
 
-#Routes
+## Routes
 -There are three features following mvc pattern in the src folder and there routes are:-
 
-// Feedback Routes
-feedbackRouter.get('/assigned',auth, getAssignedFeedbacks);
-feedbackRouter.post('/:feedbackId/submit', auth, postSubmitFeedback);
-feedbackRouter.get('/received', auth, getFeedbackReceived);
-feedbackRouter.get('/employees-feedback', auth, getAllEmployeesFeedback);
-feedbackRouter.post('/:feedbackId/update', auth, postUpdateFeedback);
+## Feedback Routes
+### feedbackRouter.get('/assigned',auth, getAssignedFeedbacks);
+### feedbackRouter.post('/:feedbackId/submit', auth, postSubmitFeedback);
+### feedbackRouter.get('/received', auth, getFeedbackReceived);
+### feedbackRouter.get('/employees-feedback', auth, getAllEmployeesFeedback);
+### feedbackRouter.post('/:feedbackId/update', auth, postUpdateFeedback);
    
-// Employee Routes
-employeeRouter.get('/', auth, getEmployeeHomePage);
-employeeRouter.get('/register', getSignInForm);
-employeeRouter.post('/signup', registerUser);
-employeeRouter.post('/signin', signIn);
-employeeRouter.get('/logout', logout);
-// Admin features
-employeeRouter.get('/:employeeId/delete', auth, deleteEmployee);
-employeeRouter.post('/:employeeId/update', auth, updateEmployee);
+## Employee Routes
+### employeeRouter.get('/', auth, getEmployeeHomePage);
+### employeeRouter.get('/register', getSignInForm);
+### employeeRouter.post('/signup', registerUser);
+### employeeRouter.post('/signin', signIn);
+### employeeRouter.get('/logout', logout);
+### Admin features
+### employeeRouter.get('/:employeeId/delete', auth, deleteEmployee);
+### employeeRouter.post('/:employeeId/update', auth, updateEmployee);
 
-// Admin Routes
-adminRouter.get('/', auth, getAdminHomePage);
-adminRouter.get('/assign', auth, getAssignPage);
-adminRouter.post('/assign', auth, postAssignFeedback);
-adminRouter.post('/add-employee', auth, postAddNewEmployee);
-adminRouter.get('/employees', auth, getAllEmployees);
+## Admin Routes
+### adminRouter.get('/', auth, getAdminHomePage);
+### adminRouter.get('/assign', auth, getAssignPage);
+### adminRouter.post('/assign', auth, postAssignFeedback);
+### adminRouter.post('/add-employee', auth, postAddNewEmployee);
+### adminRouter.get('/employees', auth, getAllEmployees);
 
-Thankyou, I tried to make this project ui cool enough and attractive and easy to use and i used Html, Css, Javascript and Bootstrap for that and i hope you will like this.
+## Thankyou, I tried to make this project ui cool enough and attractive and easy to use and i used Html, Css, Javascript and Bootstrap for that and i hope you will like this.
 Follow on github for more.
 
-Github Repository: - https://github.com/ParmodKumar28/Employee-Review-System
-Hosted Url:-  https://employee-review-system-r8tw.onrender.com/api/employee/register
-Video Link: - https://youtu.be/mvHhUozvC0w
+### Github Repository: - https://github.com/ParmodKumar28/Employee-Review-System
+### Hosted Url:-  https://employee-review-system-r8tw.onrender.com/api/employee/register
+### Video Link: - https://youtu.be/mvHhUozvC0w
