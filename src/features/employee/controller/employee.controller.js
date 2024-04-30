@@ -33,8 +33,8 @@ export const getSignInForm = async(req,res,next)=>{
 // Registering a new employee.
 export const registerUser = async(req,res,next)=>{
     try {
-        const {name, email, password} = req.body;
-        const newUser = await register({name, email, password});
+        const {name, email, password, role} = req.body;
+        const newUser = await register({name, email, password, role});
         let notification;
         if(newUser)
         {
